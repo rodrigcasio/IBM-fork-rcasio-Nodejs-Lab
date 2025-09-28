@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     
-    res.end(`Hello, everyone!`);  
+    res.end(`Hello, everyone! This is a response from the server!!!`);  
 });
 
 // This is an asynchrounous call. It starts the listening process 
