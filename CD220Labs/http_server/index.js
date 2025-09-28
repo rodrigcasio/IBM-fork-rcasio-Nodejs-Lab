@@ -1,5 +1,5 @@
-// Improved way by rcasio:
-// The original code as defualt by IBM is bellow:
+// Improved way with explanations by rcasio:
+// (The original code as defualt by IBM is bellow)
 
 // 1. This script creates an HTTP server that responds to requests with "hello, everyone!".
 // 2. Creates a server instance that uses an arrow function to handle every incoming request.
@@ -15,6 +15,8 @@ const http = require('http');
 const port = 8080;
 const hostname = 'localhost';
 
+console.log(`1. Creating server instance.. `);      // synchronous part of the code that runs first 
+
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
@@ -22,9 +24,18 @@ const server = http.createServer((req, res) => {
     res.end(`Hello, everyone!`);  
 });
 
+// This is an asynchrounous call. It starts the listening process 
+// It hands off the task of binding the server to the operating system
 server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
+    console.log(`3. Callback executed. Server running at http://${hostname}:${port}/`);         // 3. This is the callback function. it runs LATER, only 
+});                                                                                             //      after the server has successfully started listening and OS confirms
+
+console.log(`2. Server setup initialized, but program continues immediately`);
+
+// output order:
+// 1. Creating server instance...
+// 2. Server setup intiated, but program continues immediately
+// 3. Callback executed. Server running at http://localhost:8080/
 
 /*
     Another way to do what is done above
