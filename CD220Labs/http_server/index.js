@@ -1,14 +1,17 @@
 // Improved way with explanations by rcasio:
 // (The original code as defualt by IBM is bellow)
 
-// 1. This script creates an HTTP server that responds to requests with "hello, everyone!".
-// 2. Creates a server instance that uses an arrow function to handle every incoming request.
-// 3. Sets the HTTP status code for a successful response.
-// 4. Sets teh response header to indicate plain text content.
-// 5. Ends the response and sends a message to the client
-// 6. Finally, Starts the server and listens for request on the specific port and hostname
-// 6.1 This asynchronous pattern prevents your program from just sitting there and waiting for the server to be ready,
-//  allowing it to remain responsive and continue handling other tasks if necessary. 
+
+// A Node.js HTTP server.
+// 1.  The script imports the built-in `http` module to handle HTTP functionality.
+// 2.  It creates a server instance using `http.createServer()`, passing an arrow function
+//     as the request handler to manage all incoming requests.
+// 3.  This request handler function sets the HTTP status code to 200 (OK) and the
+//     `Content-Type` header to `text/plain`.
+// 4.  It then sends the response "Hello, everyone!" to the client and closes the connection.
+// 5.  The server is started by calling `server.listen()`, which is an asynchronous operation.
+// 6.  A callback function is provided to `listen()` that executes only after the server
+//     has successfully started and is ready to accept connections.
 
 const http = require('http');
 
@@ -30,15 +33,21 @@ server.listen(port, hostname, () => {
     console.log(`3. Callback executed. Server running at http://${hostname}:${port}/`);         // 3. This is the callback function. it runs LATER, only 
 });                                                                                             //      after the server has successfully started listening and OS confirms
 
-console.log(`2. Server setup initialized, but program continues immediately`);
+console.log(`2. Server setup initialized, but program continues immediately`);    // This synchronous code runs immediately after the 'server.listen()' call
+                                                                                  // because the program does not wait for the asynchronous operation to complete 
 
 // output order:
 // 1. Creating server instance...
 // 2. Server setup intiated, but program continues immediately
 // 3. Callback executed. Server running at http://localhost:8080/
 
+
+
+
+
+
 /*
-    Another way to do what is done above
+    SIMPLIFIED  WITH NO COMMENTS AND SYNCHROUNS OPERATIONS:
 
     const http = require('http');
     const port = 8080;
