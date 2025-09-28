@@ -1,4 +1,4 @@
-// Improved way with explanations by rcasio:
+// Improved way with explanations by rodrigcasio :
 // (The original code as defualt by IBM is bellow)
 
 

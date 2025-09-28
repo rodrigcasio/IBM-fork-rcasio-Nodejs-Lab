@@ -1,4 +1,4 @@
-// modified by rcasio using the arrow function 
+// modified by rodrigcasio using the arrow function 
 
 // 1. Export a function named "getDate" from the module
 // 2. inside the function, get the current date and time in the timezone "Australia/Brisbane"
