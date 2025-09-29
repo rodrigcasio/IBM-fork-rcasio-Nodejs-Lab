@@ -1,3 +1,12 @@
+// IBM challenge done by rodrigcasio
+
+// Explanation:
+// 1. Imported the built-in 'http' module and a custom 'today' module for date/time
+// 2. define the server's hostname and port
+// 3. Create a HTTP server with a request handler function
+//      - getting the current date and hour from the today module
+//      - determine a greeting message based on the current hout in mexico city
+// 4. finally, start the server and log a message when it is running 
 
 const http = require('http');
 const today = require('./today');
@@ -26,7 +35,7 @@ const server = http.createServer((req, res) => {
 
 server.listen(port, hostname, () => {
     console.log(`Callback executed!. Server is running at: http://${hostname}:${port}/`);
-})
+});
 
 
 
