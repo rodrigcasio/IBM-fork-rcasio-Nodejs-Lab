@@ -9,6 +9,16 @@ module.exports.getDate = () => {
     return australiaEstTime;
 }
 
+// part of the challenge  :
+module.exports.getDate2 = () => {
+    // to get the hours of instead of date with toLocaleString
+    let mxEstString = new Date().toLocaleString("en-US", {timeZone: "America/Mexico_City"});
+
+    // converting that string back into a Date object 
+    let mexDate = new Date(mxEstString);     
+    return mexDate;
+}
+
 /* 
     DEFAULT CODE ADDED BY IBM 
 
