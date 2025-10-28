@@ -30,7 +30,32 @@ app.get("/:name", (req, res) => {
     res.send("Hello " + req.params.name);
 });
 
-// new endpoint
+app.get('/fetchMonth/:num', (req, res) => {
+   const months = [ 'Januaryy', 'Febrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+   const num = parseInt(req.params.num);
+
+   if (num < 1 || num > 12) {
+     res.status(400).json({ message: `Invalid month input` });
+   } else {
+     res.status(200).send(months[num - 1]);
+   }
+
+ });
+
+// Start the server and listen on port 3333
+app.listen(3333, () => {
+    console.log(`Listening at http://localhost:3333`);
+});
+
+
+/*
+ *
+ *
+ *
+ *
+
+// new endpoint  (own approach)
 app.get('/fetchMonth/:num', (req, res) => {
     const num = req.params.num;
 
@@ -53,10 +78,9 @@ app.get('/fetchMonth/:num', (req, res) => {
      case '12': res.status(200).json({ message: 'December' }); break;
      default: res.status(400).json({ message: 'Invalid month number' });
    }
-
  });
-
-// Start the server and listen on port 3333
-app.listen(3333, () => {
-    console.log(`Listening at http://localhost:3333`);
-});
+ *
+ *
+ *
+ *
+ * */
