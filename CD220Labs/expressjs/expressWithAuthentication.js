@@ -31,6 +31,7 @@ app.use(session({ secret: "fingerpint" })); // Middleware to handle sessions
 app.use("/auth", function auth(req, res, next) {
   if (req.session.authorization) { // Get the authorization object stored in the session
     token = req.session.authorization['accessToken']; // Retrieve the token from authorization object
+
     jwt.verify(token, "access", (err, user) => { // Use JWT to verify token
       if (!err) {
         req.user = user;
@@ -73,6 +74,7 @@ app.post("/register", (req, res) => {
   const password = req.body.password;
 
   if (username && password) {
+
     if (!doesExist(username)) {
       users.push({ "username": username, "password": password });
       return res.status(200).json({ message: "User successfully registered. Now you can login" });
@@ -90,4 +92,4 @@ app.get("/auth/get_message", (req, res) => {
 
 const PORT = 5000; // Define the port number
 
-app.listen(PORT, () => console.log("Server is running")); // Start the server and listen on the specified port
+app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`)); // Start the server and listen on the specified port

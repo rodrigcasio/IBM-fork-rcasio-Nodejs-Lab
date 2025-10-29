@@ -7,6 +7,8 @@ const app = new express();
 // Initialize an array to store login details
 let loginDetails = [];
 
+app.use(express.json());
+
 // Define the root route to send a welcome message
 app.get("/", (req, res) => {
     res.send("Welcome to the express server");
@@ -28,7 +30,57 @@ app.get("/:name", (req, res) => {
     res.send("Hello " + req.params.name);
 });
 
+app.get('/fetchMonth/:num', (req, res) => {
+   const months = [ 'Januaryy', 'Febrary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+   const num = parseInt(req.params.num);
+
+   if (num < 1 || num > 12) {
+     res.status(400).json({ message: `Invalid month input` });
+   } else {
+     res.status(200).send(months[num - 1]);
+   }
+
+ });
+
 // Start the server and listen on port 3333
 app.listen(3333, () => {
     console.log(`Listening at http://localhost:3333`);
 });
+
+
+/*
+ *
+ *
+ *
+ *
+
+// new endpoint  (own approach)
+app.get('/fetchMonth/:num', (req, res) => {
+    const num = req.params.num;
+
+    if (num === null || num <= 0) {
+      return send.status(400).json({ message: 'Invalid number' });
+   } 
+   
+   switch (num) {
+     case '1': res.status(200).json({ message: 'January' }); break;
+     case '2': res.status(200).json({ message: 'Febrary' }); break;
+     case '3': res.status(200).json({ message: 'March' }); break;
+     case '4': res.status(200).json({ message: 'April' }); break;
+     case '5': res.status(200).json({ message: 'May' }); break;
+     case '6': res.status(200).json({ message: 'June' }); break;
+     case '7': res.status(200).json({ message: 'July' }); break;
+     case '8': res.status(200).json({ message: 'August' }); break;
+     case '9': res.status(200).json({ message: 'September' }); break;
+     case '10': res.status(200).json({ message: 'October' }); break;
+     case '11': res.status(200).json({ message: 'November' }); break;
+     case '12': res.status(200).json({ message: 'December' }); break;
+     default: res.status(400).json({ message: 'Invalid month number' });
+   }
+ });
+ *
+ *
+ *
+ *
+ * */
